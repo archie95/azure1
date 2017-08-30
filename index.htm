@@ -1,12 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Page Title</title>
-</head>
-<body>
+<div class="melon">
+</div>
+body {
+   background: #EFFFE3;
+   height: 100vh;
+   display:flex;
+   flex-direction:column;
+   justify-content: space-around;
+}
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+.melon {
+   $size: 6em;
+   width: $size;
+   height: $size;
+   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/melon.svg) no-repeat no-repeat;
+   background-size: $size * 8; //size * number of frames
+   background-position: 0% 0%;
+   
+   animation: melonSequence 0.8s steps(7) infinite reverse; //step count: number of frames - 1
+   
+   margin: 0em auto;
+}
 
-</body>
-</html>
+@keyframes melonSequence {
+   from {
+      background-position: 0% 0%
+   }
+   to {
+      background-position: 100% 0%
+   }
+}
