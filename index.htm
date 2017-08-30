@@ -1,31 +1,286 @@
-<div class="melon">
+<div class="donut">
+  <div class="donut_base"></div>
+  <div class="chocolate_curves_container">
+    <div class="chocolate"></div>
+    <div class="chocolate_curve"></div>
+    <div class="chocolate_curve rotate-45"></div>
+  </div>
+  <div class="sprinkle one"></div>
+  <div class="sprinkle two"></div>
+  <div class="sprinkle three"></div>
+  <div class="sprinkle four"></div>
+  <div class="sprinkle five"></div>
+  <div class="sprinkle six"></div>
+  <div class="sprinkle seven"></div>
+  <div class="sprinkle eight"></div>
+  <div class="sprinkle nine"></div>
+  <div class="sprinkle ten"></div>
+  <div class="sprinkle eleven"></div>
+  <div class="sprinkle twelve"></div>
 </div>
-body {
-   background: #EFFFE3;
-   height: 100vh;
-   display:flex;
-   flex-direction:column;
-   justify-content: space-around;
+<a href='javascript:history.go(0)'>replay</a>
+$donut-radius: 10vh;
+$donut-color: #ffe6ad;
+$chocolate-color: #965e25;
+$sprinkle-pink: #ffa3c0;
+
+body, html {
+  background-color: #7fd8e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.melon {
-   $size: 6em;
-   width: $size;
-   height: $size;
-   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/21542/melon.svg) no-repeat no-repeat;
-   background-size: $size * 8; //size * number of frames
-   background-position: 0% 0%;
-   
-   animation: melonSequence 0.8s steps(7) infinite reverse; //step count: number of frames - 1
-   
-   margin: 0em auto;
+.donut {
+  position: relative;
+  top: -$donut-radius * 3;
+  left: -$donut-radius * 3;
+  text-align: center;
 }
 
-@keyframes melonSequence {
-   from {
-      background-position: 0% 0%
-   }
-   to {
-      background-position: 100% 0%
-   }
+.donut_base {
+  position: absolute;
+  height: $donut-radius * 2;
+  width: $donut-radius * 2;
+  border-radius: 100%;
+  border: solid $donut-radius * 2 $donut-color;
+  box-shadow: $donut-radius / 4 $donut-radius / 4 0 rgba(0, 0, 0, .25);
+  animation: bounce-in .5s forwards;
+}
+
+.chocolate {
+  position: absolute;
+  top: $donut-radius / 2;
+  left: $donut-radius / 2;
+  height: $donut-radius * 3;
+  width: $donut-radius * 3;
+  border-radius: 100%;
+  border: solid $donut-radius $chocolate-color;
+}
+
+.chocolate_curve {
+  position: absolute;
+  height: $donut-radius * 2;
+  width: $donut-radius;
+  background-color: $chocolate-color;
+  border-radius: 100%;
+  top: $donut-radius * 2;
+  left: $donut-radius / 5;
+  box-shadow: $donut-radius * 4.6 0px 0 $chocolate-color;
+  
+  &:before {
+    content: "";
+    z-index: 100;
+    position: absolute;
+    height: $donut-radius * 2;
+    width: $donut-radius;
+    background-color: $chocolate-color;
+    border-radius: 100%;
+    top: -$donut-radius * 2.3;
+    left: $donut-radius * 2.4;
+    box-shadow: $donut-radius * 4.6 0px 0 $chocolate-color;
+    transform: rotate(90deg);
+  }
+}
+
+.rotate-45 {
+  transform: rotate(45deg);
+  top: $donut-radius / 2.6;
+  left: $donut-radius / 1.15;
+}
+
+.sprinkle {
+  position: absolute;
+  border-radius: $donut-radius;
+  z-index: 100;
+  animation: bounce-in-sprinkles .5s forwards;
+}
+
+.one {
+  transform: rotate(45deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius;
+  left: $donut-radius * 1.25;
+  animation-delay: 1s;
+}
+
+.two {
+  transform: rotate(10deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * 3;
+  left: $donut-radius * .95;
+  animation-delay: 1.5s;
+}
+
+.three {
+  transform: rotate(60deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * 2;
+  left: $donut-radius * .75;
+  animation-delay: 1.25s;
+}
+
+.four {
+  transform: rotate(60deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * 4.25;
+  left: $donut-radius * 1.25;
+  animation-delay: 1s;
+}
+
+.five {
+  transform: rotate(-20deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * 4.75;
+  left: $donut-radius * 2.25;
+  animation-delay: 1.5s;
+}
+
+.six {
+  transform: rotate(65deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * 4.75;
+  left: $donut-radius * 3.25;
+  animation-delay: 1.5s;
+}
+
+.seven {
+  transform: rotate(-45deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * 4.25;
+  left: $donut-radius * 4.35;
+  animation-delay: 1.25s;
+}
+
+.eight {
+  transform: rotate(20deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * 3.25;
+  left: $donut-radius * 5;
+  animation-delay: 1s;
+}
+
+.nine {
+  transform: rotate(-120deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * 2.25;
+  left: $donut-radius * 4.9;
+  animation-delay: 1.5s;
+}
+
+.ten {
+  transform: rotate( -10deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * 1.25;
+  left: $donut-radius * 4.5;
+  animation-delay: 1s;
+}
+
+.eleven {
+  transform: rotate( 50deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * .75;
+  left: $donut-radius * 3.5;
+  animation-delay: 1.25s;
+}
+
+.twelve {
+  transform: rotate( -20deg);
+  background-color: $sprinkle-pink;
+  top: $donut-radius * .5;
+  left: $donut-radius * 2.5;
+  animation-delay: 1s;
+}
+
+.chocolate_curves_container {
+  position: absolute;
+  opacity: 0;
+  animation: bounce-in-choco .5s .5s forwards;
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(.001);
+  }
+  
+  20%{
+    opacity: 1 !important;
+  }
+  
+  80% {
+    transform: scale(1.15);
+  }
+  
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-in-sprinkles {
+  0% {
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+  
+  20%{
+    opacity: 1;
+  }
+  
+  80% {
+    height: $donut-radius / 1.5 * 1.15;
+    width: $donut-radius / 4 * 1.15;
+  }
+  
+  100% {
+    height: $donut-radius / 1.5;
+    width: $donut-radius / 4;
+  }
+}
+
+@keyframes bounce-in-choco {
+  0% {
+    transform: scale(.001);
+    left: $donut-radius * 3;
+    top: $donut-radius * 3;
+  }
+  
+  20%{
+    opacity: 1;
+  }
+  
+  80% {
+    transform: scale(1.15);
+    left: - $donut-radius * .45;
+    top:  - $donut-radius * .45;
+  }
+  
+  100% {
+    left: 0;
+    transform: scale(1);
+    top: 0;
+    opacity: 1;
+  }
+}
+
+a {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  font-size: 12pt;
+  text-transform: uppercase;
+  letter-spacing: 3pt;
+  background: transparent;
+  border: 0;
+  color: #ffffff;
+  font-family: sans-serif;
+  text-decoration: none;
+  transition: all .25s ease;
+  
+  &:hover {
+    opacity: .5;
+  }
 }
